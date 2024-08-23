@@ -1,0 +1,273 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f2f4f7;
+}
+
+.logo {
+  width: 100px; /* Adjust the width as needed */
+  height: auto; /* This maintains the aspect ratio */
+  margin-top: 5%;
+}
+
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.flex-div {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.name-content {
+  margin-right: 7rem;
+}
+
+.name-content .logo {
+  font-size: 2.0rem;
+  color: #1877f2;
+  
+}
+
+@media (max-width: 767px) {
+    .name-content .logo {
+        font-size: 2rem;
+        /* Adjust the font size for smaller screens */
+        color: #1877f2;
+        /* Keep the color as specified */
+		margin-top: 75%;
+    text-align: center;
+		/* margin-left: 26.5%; */
+		width: auto;
+        /* Set width to auto for mobile devices */
+    }
+}
+
+.name-content p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 5rem;
+}
+
+@media (max-width: 767px) {
+    .name-content p {
+        font-size: 1.0rem;
+        /* Adjust the font size for smaller screens */
+        font-weight: 400;
+        /* Keep the font weight as specified */
+        margin-bottom: 3rem;
+        /* Adjust the margin bottom for smaller screens */
+        width: auto;
+        /* Set width to auto for mobile devices */
+    }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  padding: 2rem;
+  width: 530px;
+  height: 380px;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
+}
+
+/* Media Query for Screens Smaller than 768px */
+@media (max-width: 430px) {
+  form {
+    width: 90%; /* Adjust the width for smaller screens */
+    margin: 0 auto; /* Center the form */
+	margin-bottom: 290px;
+  }
+}
+
+form input {
+  outline: none;
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+  font-size: 0.7rem;
+}
+
+/* Media query for small screens (e.g., mobile devices) */
+@media only screen and (max-width: 430px) {
+  form input {
+    padding: 0.6rem 0.8rem;
+    margin-bottom: 0.6rem;
+    font-size: 0.6rem;
+  }
+}
+
+form input:focus {
+  border: 1.8px solid #1877f2;
+}
+
+form .login {
+  outline: none;
+  border: none;
+  background: #1877f2;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-top: 20px;
+}
+
+form .login:hover {
+  background: #0f71f1;
+  cursor: pointer;
+}
+
+form a {
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+  padding-top: 0.8rem;
+  color: #1877f2;
+}
+
+form hr {
+  background: #f7f7f7;
+  margin: 1rem;
+}
+
+form .create-account {
+  outline: none;
+  border: none;
+  background: #06b909;
+  padding: 0.8rem 1rem;
+  border-radius: 0.4rem;
+  font-size: 1.1rem;
+  color: #fff;
+  width: 75%;
+  margin: 0 auto;
+}
+
+form .create-account:hover {
+  background: #03ad06;
+  cursor: pointer;
+}
+
+/* Media Queries */
+
+@media (max-width: 500px) {
+  html {
+    font-size: 70%;
+  }
+
+  .name-content {
+    margin: 0;
+    display:inline;
+	margin-top: -65px;
+  }
+
+  form {
+    width: 400px;
+    height: fit-content;
+  }
+
+  form input,
+  form .login,
+  form a,
+  form .create-account {
+    font-size: 1.5rem;
+  }
+
+  .flex-div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 501px) and (max-width: 768px) {
+  html {
+    font-size: 60%;
+  }
+
+  .name-content {
+    margin: 0;
+    text-align: center;
+  }
+
+  form {
+    width: 400px;
+    height: fit-content;
+  }
+
+  form input,
+  form .login,
+  form a,
+  form .create-account {
+    font-size: 1.5rem;
+  }
+
+  .flex-div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px) {
+  html {
+    font-size: 60%;
+  }
+
+  .name-content {
+    margin: 0;
+    text-align: center;
+	margin-bottom: 20px;
+  }
+
+form {
+  width: 300px;
+  margin-bottom: -50px; /* Adjust the value as needed */
+  height: fit-content;
+}
+
+  form input,
+  form .login,
+  form a,
+  form .create-account {
+    font-size: 1.5rem;
+  }
+
+  .flex-div {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Landscape Orientation and Max Height Media Query */
+@media (orientation: landscape) and (max-height: 500px) {
+  .header {
+    height: 90vmax;
+  }
+}
+
+/* Media Queries */
+@media (min-width: 501px) and (max-width: 768px),
+       (min-width: 769px) and (max-width: 1200px),
+       (max-width: 500px) {
+  /* No additional styles needed here, as common styles are already applied */
+}
+
+/* Media Query for Screens Smaller than 500px */
+@media (max-width: 500px) {
+  /* Additional styles for screens smaller than 500px */
+  .header {
+    height: 90vmax;
+  }
+
+  /* Add more styles as needed */
+}

